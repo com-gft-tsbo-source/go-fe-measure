@@ -19,13 +19,9 @@ if [[ ! -z "$MS_STATICURL" ]] ;      then ARGS+=( "-staticurl" "$MS_STATICURL" )
 if [[ ! -z "$MS_TEMPLATEFILE" ]] ;      then ARGS+=( "-templatefile" "$MS_TEMPLATEFILE" ) ; fi
 if [[ ! -z "$MS_TEMPLATEURL" ]] ;      then ARGS+=( "-templateurl" "$MS_TEMPLATEURL" ) ; fi
 
-if [[ ! -z "$MS_DEVICE" ]] ; then
+if [[ ! -z "$APP_NAME" ]] ;           then ARGS+=( "-name" "$APP_NAME" ) ; fi
+if [[ ! -z "$APP_VERSION" ]] ;        then ARGS+=( "-version" "$APP_VERSION" ) ; fi
 
-    while read d ; do
-        ARGS+=( "--device" "$d" )
-    done < <( echo "$MS_DEVICE" | sed 's/  */\n/' )
-
-fi
 
 echo -n "/<NAME>"
 for i in "${ARGS[@]}" "$@" ; do
@@ -33,4 +29,4 @@ for i in "${ARGS[@]}" "$@" ; do
 done
 echo
 
-/<NAME> "${ARGS[@]}" "$@"
+exec /<NAME> "${ARGS[@]}" "$@"

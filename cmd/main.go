@@ -16,9 +16,9 @@ var usage []byte = []byte("fe-measure: [OPTIONS] ")
 
 func main() {
 
-	var ms fe-measure.FeMeasure
+	var ms femeasure.FeMeasure
 
-	fe-measure.InitFromArgs(&ms, os.Args, nil)
+	femeasure.InitFromArgs(&ms, os.Args, nil)
 
 	ms.Run()
 }

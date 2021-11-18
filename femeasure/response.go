@@ -1,4 +1,4 @@
-package fe-measure
+package femeasure
 
 import (
 	"github.com/com-gft-tsbo-source/go-common/ms-framework/microservice"

@@ -1,4 +1,4 @@
-package fe-measure
+package femeasure
 
 import (
 	"bytes"

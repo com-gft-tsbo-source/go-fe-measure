@@ -1,20 +1,22 @@
 div.frontend {
     padding: 1em;
     position: relative;
-    float: left;
 }
 
 table.frontend {
     border-collapse: collapse;
+    width: 100%;
 }
 
 td.fename {
     text-align: left;
     vertical-align: middle;
     background-color: #AAAAAA;
+
     border-bottom: 3px solid #000000;
     border-left: 0px solid #000000;
     border-top: 1px solid #AAAAAA;
+
     padding-left: 1em;
     padding-right: 1em;
     padding-top: 0.5em;
@@ -26,10 +28,10 @@ span.fename {
 }
 
 td.feversion {
-    text-align: left;
+    text-align: right;
     vertical-align: middle;
-    
     background-color: #DCDCDC;
+
     border-top: 0;
     border-left: 0px solid #000000;
     border-bottom: 3px solid #000000;
@@ -43,20 +45,8 @@ span.feversion {
     font-size: 2em;
 }
 
-div.fepod {
-    text-align: center;
-}
-
-div.feenvironment {
-    text-align: center;
-}
-
-div.feenvironment:empty {
-    display: hide;
-}
-
-div.feenvironment:empty::after {
-    content: "XXX"
+span.fehost {
+    font-size: 1em;
 }
 
 div.devicelist {
@@ -72,16 +62,17 @@ div.device {
 
 table.device {
     border-collapse: collapse;
-    /* float: left; */
 }
 
 td.name {
     text-align: left;
     vertical-align: middle;
     background-color: #AAAAAA;
+
     border-top: 3px solid #000000;
     border-left: 3px solid #000000;
     border-bottom: 1px solid #AAAAAA;
+
     padding-left: 1em;
     padding-right: 1em;
     padding-top: 0.5em;
@@ -93,10 +84,10 @@ span.name {
 }
 
 td.version {
-    text-align: left;
+    text-align: right;
     vertical-align: middle;
-    
     background-color: #DCDCDC;
+
     border-top: 3px solid #000000;
 
     padding-left: 1em;
@@ -107,31 +98,97 @@ span.version {
     font-size: 1.5em;
 }
 
-span.version[data-version="1.0.0"] {
-    font-weight: bold;
-    color: green;
+span.host {
+    font-size: 0.9em;
 }
 
-span.version[data-version="1.1.0"] {
+span.version[data-version$="0"] {
     font-weight: bold;
-    color: blue;
+    color:  #000000;
+}
+span.version[data-version$="1"] {
+    font-weight: bold;
+    color:  #990000;
+}
+span.version[data-version$="2"] {
+    font-weight: bold;
+    color:  #009900;
+}
+span.version[data-version$="3"] {
+    font-weight: bold;
+    color:  #000099;
+}
+span.version[data-version$="4"] {
+    font-weight: bold;
+    color:  #990099;
+}
+span.version[data-version$="5"] {
+    font-weight: bold;
+    color:  #009999;
+}
+span.version[data-version$="6"] {
+    font-weight: bold;
+    color:  #999900;
+}
+span.version[data-version$="7"] {
+    font-weight: bold;
+    color:  #999999;
+}
+span.version[data-version$="8"] {
+    font-weight: bold;
+    color:  #9999FF;
+}
+span.version[data-version$="9"] {
+    font-weight: bold;
+    color:  #444499;
 }
 
-span.version[data-version="2.0.0"] {
-    font-weight: bold;
-    color: red;
+td.rnrname {
+    text-align: left;
+    vertical-align: middle;
+    background-color: #DCDCDC;
+
+    border-top: 1px solid #000000;
+    border-left: 3px solid #000000;
+
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+span.rnrname {
+    font-size: 1.0em;
+}
+
+td.rnrversion {
+    text-align: right;
+    vertical-align: middle;
+    background-color: #DCDCDC;
+
+    border-top: 1px solid #000000;
+
+    padding-left: 1em;
+    font-size: 1em;
+}
+
+span.rnrversion {
+    font-size: 1.0em;
 }
 
 td.value {
     text-align: left;
     vertical-align: middle;
     background-color: #DCDCDC;
+
     border-left: 3px solid #000000;
+
     padding-left: 1em;
     padding-right: em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
 }
+
 span.value {
     font-size: 1em;
 }
@@ -139,8 +196,8 @@ span.value {
 td.info {
     text-align: right;
     vertical-align: middle;
-    
     background-color: #DCDCDC;
+
     border-top: 0;
     border-left: 3px solid #000000;
     border-right: 1px solid #AAAAAA;
@@ -155,8 +212,8 @@ span.info {
 td.time {
     text-align: right;
     vertical-align: middle;
-    
     background-color: #DCDCDC;
+
     border-top: 0;
 
     padding-left: 1em;
@@ -172,13 +229,15 @@ div.environment {
 div.environment[data-environment]:after {
     content:attr(data-environment);
     position:absolute;
+    color:black;
     background: #FF5555;
+
     top: -0.7em;
     right: -1em;
-    font-size:0.7em;
-    color:black;
     width:5em;
     height:1.5em;
+    font-size:0.7em;
+
     text-align:center;
     line-height:1.5em;
     border-radius:10%;
@@ -187,10 +246,19 @@ div.environment[data-environment]:after {
 div.environment[data-environment="prod"]:after {
     background: #55FF55;
 }
-div.environment[data-environment="test"]:after {
-    background: #5555FF;
+
+div.environment[data-environment="pre-prod"]:after {
+    background: #FFAA55;
+}
+
+div.environment[data-environment="dev"]:after {
+    background: #9999FF;
+}
+
+div.environment[data-environment="pre-dev"]:after {
+    background: #CCCCCC;
 }
 div.environment[data-environment=""]:after {
     content: "n/a";
-    background: #FFFF55;
+    background: #FFFFFF;
 }
