@@ -1,0 +1,82 @@
+{{- $environment := "" }}{{ if ne ( len ( index .RequestHeader "X-Environment" ) ) 0 }}{{ $environment = index .RequestHeader "X-Environment" 0 }}{{ end -}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="{{ .BaseURL }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fe-weather</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+
+<body>
+<!--
+    <div class='frontend'>
+        <div class="fepod"><code>Frontend '<span class="fename">{{ .Frontend.GetName() }}</span>' <span class="version" data-version="{{.Frontend.Version }}">v{{.Frontend.Version }}</span></code></div>
+        <div class="feenvironment">
+        {{- if .RequestEnvironment -}}
+            <code><span class="feenvironment">{{ .RequestEnvironment }}</code>
+        {{- else -}}
+            <code><span class="feenvironment">no environment</code>
+        {{- end -}}
+        </div>
+    </div>
+-->
+    <div class="frontend">
+        <div class="environment" data-environment="{{ $environment }}"></div>
+        <table class="frontend" >
+            <tbody>
+                <tr>
+                    <td class="fename"><span class="fename">Frontend</span></td>
+                    <td class="feversion"><span class="feversion version" data-version="{{ .Frontend.Version }}">v{{ .Frontend.Version }}</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="devicelist">
+        {{ range .Reply }}
+        {{- $deviceenvironment := "" }}{{ if ne ( len ( index .Header "X-Environment" ) ) 0 }}{{ $deviceenvironment = index .Header "X-Environment" 0 }}{{ end -}}
+        <div class="device">
+            <div class="environment" data-environment="{{ $deviceenvironment }}"></div>
+            <table class="device" >
+                <tbody>
+                    <tr>
+                        <td class="name"><span class="name">{{ .Data.name }}</span></td>
+                        <td class="version"><span class="version" data-version="{{ .Data.version }}">v{{ .Data.version }}</span></td>
+                    </tr>
+                    <tr>
+                        <td class="value"><span class="value">{{ .Data.formatted }}</span></td>
+                        <td class="time"><span class="time">{{ slice .Data.stamp 11 19 }}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {{ end }}
+    </div>
+<!--
+    Displaying {{.Count}} devices on {{ .Frontend.GetName() }}
+    BaseURL        {{ .BaseURL }}
+    Referer        {{ .Referer }}
+    RequestURL     {{ .RequestURL }}
+    RequestURI     {{ .RequestURI }}
+    RequestSource  {{ .RequestSource }}
+    RequestTarget  {{ .RequestTarget }}
+    {{- range $key, $values := .RequestHeader -}}
+        {{- range $value := $values }}
+    {{ $key }}     {{ $value }}
+        {{- end -}}
+    {{- end -}}
+
+    {{- range .Reply -}}
+        {{- range $key, $values := .Header -}}
+            {{- range $value := $values }}
+    {{ $key }}     {{ $value }}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+-->
+</body>
+
+</html>

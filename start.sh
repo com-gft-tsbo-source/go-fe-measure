@@ -1,0 +1,1 @@
+../../../bin/fe-weather -templatefile ../../docker/fe-weather/index.html -staticdir ../..//docker/fe-weather/static/ -name mysvc -port 8080 -host 127.0.0.1 --hostname xxx --version 1.0.0 --device http://127.0.0.1:8081/measure
