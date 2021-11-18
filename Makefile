@@ -1,5 +1,5 @@
-CUSTOMER ?= com.gft.deuba
-PROJECT ?= com.gft.deuba.unity.release-1
+CUSTOMER ?= com.gft.tsbo
+PROJECT ?= com.gft.tsbo.source
 MODULE ?= frontend
 COMPONENT ?= fe-measure
 TARGET ?= $(PROJECT).$(MODULE).$(COMPONENT)
