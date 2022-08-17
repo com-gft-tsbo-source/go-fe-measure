@@ -1,0 +1,5 @@
+CUSTOMER ?= com.gft.tsbo
+PROJECT ?= com.gft.tsbo.source
+MODULE ?= frontend
+COMPONENT ?= fe-measure
+GIT_HOST ?= github.com

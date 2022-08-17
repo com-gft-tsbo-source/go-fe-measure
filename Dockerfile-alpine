@@ -42,13 +42,13 @@ ENV PROJECT=$PROJECT
 
 RUN mkdir -p /var/log/${COMPONENT} /workdir
 RUN adduser -H -D ${COMPONENT}
-COPY example /wordir/example
 COPY --from=BUILDIMAGE /tmp/build/src/build/bin/${PROJECT}.${MODULE}.${COMPONENT} /opt/
 RUN chown -R ${COMPONENT}:${COMPONENT} /opt/${PROJECT}.${MODULE}.${COMPONENT} /workdir && \
     chmod o-rwx,g-rx,u=rwx /opt/${PROJECT}.${MODULE}.${COMPONENT} && \
     chmod -R o-rwx,g-w,u=rwX /workdir && \
     ln -s /opt/${PROJECT}.${MODULE}.${COMPONENT} /opt/${COMPONENT} && \
     ln -s /opt/${COMPONENT} /opt/component
+
 
 LABEL GITHASH=${GITHASH}
 LABEL TIMESTAMP=${TIMESTAMP}
