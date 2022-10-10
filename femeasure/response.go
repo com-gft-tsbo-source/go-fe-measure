@@ -20,7 +20,7 @@ type MeasureResponse struct {
 
 // InitMeasureResponse Constructor of a response of fe-measure
 func InitMeasureResponse(r *MeasureResponse, status string, ms *FeMeasure) {
-	microservice.InitResponseFromMicroService(&r.Response, ms, status)
+	microservice.InitResponseFromMicroService(&r.Response, ms, 200, status)
 	r.RnrSvcVersion = "???"
 }
 
